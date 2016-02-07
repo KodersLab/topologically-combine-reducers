@@ -1,0 +1,35 @@
+{
+  "name": "topologically-combine-reducers",
+  "version": "0.0.3",
+  "description": "Combine and access other reducer state by their dependencies",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:commonjs": "babel src --out-dir lib",
+    "build": "npm run clean && npm run build:commonjs",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KodersLab/topologically-combine-reducers.git"
+  },
+  "keywords": [
+    "redux",
+    "reducer"
+  ],
+  "author": "Mattia Manzati",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KodersLab/topologically-combine-reducers/issues"
+  },
+  "homepage": "https://github.com/KodersLab/topologically-combine-reducers#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "rimraf": "^2.5.1"
+  },
+  "dependencies": {
+    "toposort-class": "^1.0.1"
+  }
+}
