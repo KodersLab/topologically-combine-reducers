@@ -52,6 +52,12 @@ export function todos(todos = {}, action, {users, auth}){
 }
 ```
 
+And what about testing? As you can imagine, to test these reducer you just have to pass as third argument an object of their dependency.
+
+```javascript
+assert(todos({}, addTodoActionCreator('Learn advanced redux usage'), {auth: '1', users: {'1': {username: 'mattiamanzati'}}}), {'1': {user_id: '1', task: 'Learn advanced redux usage'}})
+```
+
 ### This can solve
 - **Accessing ancestor reducer's data** (e.g. accessing current logged user_id)
 - **Let the integrity checks live in the reducer** (e.g. if we are adding a todo with a non existing user_id in the users reducers, do nothing.)
