@@ -53,9 +53,18 @@ export function todos(todos = {}, action, {users, auth}){
 ```
 
 And what about testing? As you can imagine, to test these reducer you just have to pass as third argument an object of their dependency.
-
+This way you could also handle custom edge-case testing like save a task as unlogged user and handle it after when the user is finally logged.
 ```javascript
-assert(todos({}, addTodoActionCreator('Learn advanced redux usage'), {auth: '1', users: {'1': {username: 'mattiamanzati'}}}), {'1': {user_id: '1', task: 'Learn advanced redux usage'}})
+assert(
+    // call the reducer
+    todos(
+        {}, 
+        addTodoActionCreator('Learn advanced redux usage'), 
+        {auth: '1', users: {'1': {username: 'mattiamanzati'}}}
+    ), 
+    // expected output
+    {'1': {user_id: '1', task: 'Learn advanced redux usage'}}
+);
 ```
 
 ### This can solve
