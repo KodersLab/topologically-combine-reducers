@@ -8,7 +8,9 @@ First install via ```npm install topologically-combine-reducers```, then use in 
 import topologicallyCombineReducers from 'topologically-combine-reducers';
 import {auth, users, todos} from './reducers';
 
-var masterReducer = topologicallyCombineReducers({auth, users, todos}, 
+var masterReducer = topologicallyCombineReducers(
+    // pass in the object-of-reducers-functions
+    {auth, users, todos}, 
     // define the dependency tree
     {
         users: [], // could be omitted.
@@ -31,7 +33,7 @@ export function auth(loggedUser = null, action, {users}){
 export function todos(todos = {}, action, {users, auth}){
     // now, your reducer knows all about users and auth, so you can check if user is logged and exists.
     
-    // (if no auth is provided, or user is missing in users, do nothing.
+    // (if no auth is provided, or user is missing in users, do nothing.)
     if(!auth || !users[auth]) return todos;
     
     // Hey! Now in your reducer you can handle user_id! :D
@@ -45,6 +47,7 @@ export function todos(todos = {}, action, {users, auth}){
                     task: action.payload
                 }
             };
+        // ...
     }
 }
 ```
@@ -54,6 +57,7 @@ export function todos(todos = {}, action, {users, auth}){
 - **Let the integrity checks live in the reducer** (e.g. if we are adding a todo with a non existing user_id in the users reducers, do nothing.)
 - **Writing tests for reducer with dependency to other reducers data** (e.g. auth reducer will depend on users reducer, instead of creating the entire app store for each test, you could simply pass in as third argument of the reducer the state of the users reducer at that time)
 - **Time travel problems with redux-thunk** (e.g. action contains some data that cames from getState(), and this may change during time travelling)
+- **Writing modular apps in redux** (e.g. each module exports an index.js with the dependencies list and the reducer, and you can construct the masterReducer using that dependencies tree)
 
 ### The problem
 Imagine a multi-user app, with lot of features and a modular structure.
