@@ -65,6 +65,17 @@ assert(
     // expected output
     {'1': {user_id: '1', task: 'Learn advanced redux usage'}}
 );
+
+assert(
+    // call the reducer
+    todos(
+        {}, 
+        addTodoActionCreator('Learn advanced redux usage'), 
+        {auth: '1', users: {}}
+    ), 
+    // expected output (nothing is done because user does not exists in users object)
+    {}
+);
 ```
 
 ### This can solve
