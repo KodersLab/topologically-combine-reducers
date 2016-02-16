@@ -14,7 +14,7 @@ export default function topologicallyCombineReducers(reducers, dependencies = {}
     var order = ts.sort().reverse();
     
     // return the combined reducer
-    return (state, action) => {
+    return (state = {}, action) => {
         
         // new state
         var newState = {};

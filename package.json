@@ -1,6 +1,6 @@
 {
   "name": "topologically-combine-reducers",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Combine and access other reducer state by their dependencies",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
